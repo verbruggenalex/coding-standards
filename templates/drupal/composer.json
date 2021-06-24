@@ -1,0 +1,46 @@
+{
+  "name": "custom/template-test",
+  "type": "project",
+  "description": "Just a composer.json to test coding standards on.",
+  "require": {
+    "ext-json": "*",
+    "PHP": ">=7.1"
+  },
+  "require-dev": {
+    "composer/installers": "^1.7",
+    "drupal/core-composer-scaffold": "^9.1",
+    "drupal/core-dev": "^9.1",
+    "drupal/core-recommended": "^9.1"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "drupal-scaffold": {
+      "allowed-packages": [
+        "drupal/core"
+      ],
+      "locations": {
+        "web-root": "./web"
+      }
+    },
+    "installer-paths": {
+      "web/core": [
+        "type:drupal-core"
+      ]
+    },
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "phpcs": "./vendor/bin/phpcs",
+    "phpmd": "./vendor/bin/phpmd web/ text phpmd.xml",
+    "phpstan": "./vendor/bin/phpstan"
+  }
+}

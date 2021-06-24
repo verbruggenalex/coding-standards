@@ -1,0 +1,26 @@
+parameters:
+  level: 8
+  drupal:
+    drupal_root: %currentWorkingDirectory%/web
+  paths:
+    - web/
+  ignoreErrors:
+    - '#Access to an undefined property Drupal\\Core\\Field\\FieldItemListInterface::\$[a-zA-Z0-9_]+\.#'
+    - '#Call to an undefined method Drupal\\Core\\Field\\FieldItemListInterface::[a-zA-Z0-9_]+\(\)\.#'
+    - '#Parameter \#2 \$value of method Drupal\\Core\\Database\\Query\\ConditionInterface::condition\(\) expects array\|Drupal\\Core\\Database\\Query\\SelectInterface\|string\|null, [a-zA-Z0-9_]+ given.#'
+    - '#Unsafe usage of new static\(\).#'
+    - '/^Method [a-zA-Z0-9\\_]+::create\(\) has no return typehint specified./'
+    -
+      message: '/^Function [a-zA-Z0-9\\_]+\(\) has no return typehint specified\./'
+      paths:
+        - *.module
+        - *.install
+        - *.theme
+        - *.profile
+        - *.inc
+        - *.php
+  reportUnmatchedIgnoredErrors: false
+  checkMissingIterableValueType: false
+includes:
+  - vendor/mglaman/phpstan-drupal/extension.neon
+  - vendor/phpstan/phpstan-deprecation-rules/rules.neon

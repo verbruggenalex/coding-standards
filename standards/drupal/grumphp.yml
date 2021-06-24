@@ -1,0 +1,10 @@
+grumphp:
+  tasks:
+    git_blacklist:
+      triggered_by: [php,module,inc,install,test,profile,theme]
+    phpcs:
+      triggered_by: [php,module,inc,install,test,profile,theme,info.yml,services.yml,routing.yml]
+    phplint:
+      triggered_by: [php,module,inc,install,test,profile,theme]
+    phpstan:
+      triggered_by: [php,module,inc,install,test,profile,theme]

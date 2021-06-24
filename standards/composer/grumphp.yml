@@ -1,0 +1,25 @@
+grumphp:
+  ascii:
+    failed: ~
+    succeeded: ~
+  tasks:
+    composer: ~
+    composer_normalize: ~
+    file_size:
+      max_size: 100K
+      ignore_patterns:
+        - composer.lock
+        - package-lock.json
+    git_blacklist:
+      keywords:
+        - "die("
+        - "var_dump("
+        - "exit;"
+      triggered_by: [php]
+    jsonlint: ~
+    phplint: ~
+    securitychecker_enlightn:
+      lockfile: composer.lock
+      run_always: false
+    xmllint: ~
+    yamllint: ~

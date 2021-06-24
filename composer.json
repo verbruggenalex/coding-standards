@@ -1,0 +1,19 @@
+{
+    "name": "verbruggenalex/coding-standards",
+    "description": "Coding standards package",
+    "authors": [
+        {
+            "name": "Alexander Verbruggen",
+            "email": "alexander.verbruggen@intracto.com"
+        }
+    ],
+    "require": {},
+    "scripts": {
+        "setup-drupal": [
+            "mkdir -p builds/drupal",
+            "cp templates/drupal/composer.json builds/drupal",
+            "composer install -d builds/drupal",
+            "composer require -d builds/drupal drupal/coder enlightn/security-checker ergebnis/composer-normalize mglaman/phpstan-drupal php-parallel-lint/php-parallel-lint phpmd/phpmd phpro/grumphp phpstan/phpstan-deprecation-rules"
+        ]
+    }
+}
