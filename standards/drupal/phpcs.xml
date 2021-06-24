@@ -10,7 +10,6 @@
 
     <arg name="extensions" value="php,inc,module,install,test,profile,theme,css,js,info.yml,services.yml,routing.yml" />
     <arg name="ignore" value="vendor/,node_modules/" />
-
-    <file>./</file>
+    <arg value="sp"/>
 
 </ruleset>

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<ruleset name="Internal Drupal Ruleset">
+    <description>Internal Drupal Ruleset</description>
+    <rule ref="vendor/verbruggenalex/coding-standards/standards/drupal/phpcs.xml" />
+</ruleset>

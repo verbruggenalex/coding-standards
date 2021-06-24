@@ -28,7 +28,7 @@
       "web/core": [
         "type:drupal-core"
       ]
-    },
+    }
   },
   "repositories": {
     "drupal": {
