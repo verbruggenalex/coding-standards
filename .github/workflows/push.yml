@@ -24,11 +24,12 @@ jobs:
       - name: Setup environment
         run: |
           docker-compose up -d web
+          sleep 5
 
       - name: Setup package, test package
         run: |
           docker-compose exec -T web composer install
-          docker-compose exec -T web grumphp run
+          docker-compose exec -T web ./vendor/bin/grumphp run
 
       - name: Test Drupal Template
         run: |
