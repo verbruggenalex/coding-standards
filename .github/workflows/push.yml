@@ -26,6 +26,7 @@ jobs:
           docker-compose up -d web
 
       - name: Composer install
+        run: |
           docker-compose exec -T web composer install
 
       - name: Run Grumphp
