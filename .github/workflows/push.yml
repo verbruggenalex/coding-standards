@@ -25,10 +25,14 @@ jobs:
         run: |
           docker-compose up -d web
 
-      - name: Composer install
+      - name: Setup package, test package
         run: |
           docker-compose exec -T web composer install
-
-      - name: Run Grumphp
-        run: |
           docker-compose exec -T web grumphp run
+
+      - name: Test Drupal Template
+        run: |
+          docker-compose exec -T web composer setup-drupal
+          docker-compose exec -T -w build/drupal ./vendor/bin/phpcs || echo "Proceed"
+          docker-compose exec -T -w build/drupal ./vendor/bin/phpstan || echo "Proceed"
+          docker-compose exec -T -w build/drupal ./vendor/bin/grumphp run || echo "Proceed"
