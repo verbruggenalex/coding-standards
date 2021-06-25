@@ -1,0 +1,32 @@
+name: Push on master
+
+on:
+  push:
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Cache build
+        id: cache-build
+        uses: actions/cache@v2
+        with:
+          path: |
+            vendor/
+            web/
+            node_modules/
+          key: build-${{ hashFiles('composer.lock', 'package-lock.json') }}
+
+      - name: Setup environment
+        run: |
+          docker-compose up -d web
+          while [ $(docker-compose ps | grep -c healthy) -lt 2 ]; do sleep 5; echo "Waiting for services"; done
+          docker-compose ps
+
+      - name: Run Grumphp
+        run: |
+          docker-compose exec -T web grumphp run
