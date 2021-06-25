@@ -13,6 +13,9 @@
         "phpro/grumphp": "^1.3"
     },
     "scripts": {
+        "post-install-cmd": [
+            "cp -Rf templates/composer/* ./"
+        ],
         "setup-drupal": [
             "mkdir -p builds/drupal",
             "cp templates/drupal/* builds/drupal",

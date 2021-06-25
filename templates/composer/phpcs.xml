@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<ruleset name="Internal Composer Ruleset">
+    <description>Internal Composer Ruleset</description>
+    <rule ref="vendor/verbruggenalex/coding-standards/standards/composer/phpcs.xml" />
+    <file>./</file>
+</ruleset>
