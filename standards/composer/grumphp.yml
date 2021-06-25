@@ -12,16 +12,23 @@ grumphp:
         - package-lock.json
     git_blacklist:
       keywords:
-        - "die("
-        - "var_dump("
-        - "exit;"
-      triggered_by: [php]
-    jsonlint:
-      ignore_patterns: [vendor/*,node_modules/*]
-    phplint:
-      exclude: [vendor/,node_modules/]
+        # PHP
+        - " die("
+        - " var_dump("
+        - " print_r("
+        - " print("
+        - " dump("
+        - " debug_backtrace("
+        - " file_put_contents("
+        - " exit;"
+        - " echo "
+        # JS
+        - " console.log("
+      triggered_by: [php,js]
+    jsonlint: ~
+    phplint: ~
     securitychecker_enlightn:
       lockfile: composer.lock
-      run_always: false
+      run_always: true
     xmllint: ~
     yamllint: ~
