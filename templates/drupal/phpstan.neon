@@ -1,3 +1,3 @@
 parameters:
 includes:
-  - vendor/verbruggenalex/coding-standards/drupal/phpstan.neon
+  - vendor/verbruggenalex/coding-standards/standards/drupal/phpstan.neon

@@ -1,3 +1,6 @@
+imports:
+  - { resource: ../composer/grumphp.yml }
+
 grumphp:
   tasks:
     git_blacklist:

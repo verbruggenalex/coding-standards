@@ -1,0 +1,2 @@
+imports:
+  - { resource: vendor/verbruggenalex/coding-standards/standards/drupal/grumphp.yml }
