@@ -25,6 +25,9 @@ jobs:
         run: |
           docker-compose up -d web
 
+      - name: Composer install
+          docker-compose exec -T web composer install
+
       - name: Run Grumphp
         run: |
           docker-compose exec -T web grumphp run
