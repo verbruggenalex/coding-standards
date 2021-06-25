@@ -1,7 +1,11 @@
 version: '3.8'
 services:
   web:
-    image: thecodingmachine/php:8.0-v4-fpm
+    image: thecodingmachine/php:8.0-v4-apache
+    environment:
+      APACHE_DOCUMENT_ROOT: ${PWD}/web
+      PHP_EXTENSION_GD: 1
+      PHP_EXTENSION_XDEBUG: 1
     working_dir: ${PWD}
     volumes:
       - ${PWD}:${PWD}
