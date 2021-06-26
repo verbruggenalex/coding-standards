@@ -20,12 +20,11 @@
             "cp -Rf templates/composer/* ./"
         ],
         "setup-drupal": [
-            "mkdir -p builds/drupal",
-            "cp templates/drupal/* builds/drupal",
-            "composer install -d builds/drupal",
-            "mkdir -p ${PWD}/builds/drupal/vendor/verbruggenalex/coding-standards",
-            "cp -Rf ${PWD}/standards ${PWD}/builds/drupal/vendor/verbruggenalex/coding-standards",
-            "composer require -d builds/drupal --no-interaction drupal/coder enlightn/security-checker ergebnis/composer-normalize mglaman/phpstan-drupal php-parallel-lint/php-parallel-lint phpmd/phpmd phpro/grumphp phpstan/phpstan-deprecation-rules"
+            "sudo mkdir -p ../builds/drupal",
+            "sudo chown 1000:1000 ../builds/drupal",
+            "cp templates/drupal/* ../builds/drupal",
+            "composer install -d ../builds/drupal",
+            "composer require -d ../builds/drupal --no-interaction drupal/coder enlightn/security-checker ergebnis/composer-normalize mglaman/phpstan-drupal php-parallel-lint/php-parallel-lint phpmd/phpmd phpro/grumphp phpstan/phpstan-deprecation-rules"
         ]
     }
 }

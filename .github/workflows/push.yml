@@ -34,6 +34,6 @@ jobs:
       - name: Test Drupal Template
         run: |
           docker-compose exec -T web composer setup-drupal
-          docker-compose exec -w ${PWD}/builds/drupal -T web ./vendor/bin/phpcs || echo "Proceed"
-          docker-compose exec -w ${PWD}/builds/drupal -T web ./vendor/bin/phpstan || echo "Proceed"
-          docker-compose exec -w ${PWD}/builds/drupal -T web ./vendor/bin/grumphp run || echo "Proceed"
+          docker-compose exec -w ${PWD}/../builds/drupal -T web ./vendor/bin/phpcs || echo "Proceed"
+          docker-compose exec -w ${PWD}/../builds/drupal -T web ./vendor/bin/phpstan || echo "Proceed"
+          docker-compose exec -w ${PWD}/../builds/drupal -T web ./vendor/bin/grumphp run || echo "Proceed"
