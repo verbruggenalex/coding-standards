@@ -9,24 +9,19 @@ namespace Verbruggenalex\CodingStandards;
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\IO\IOInterface;
-use Composer\Package\AliasPackage;
-use Composer\Package\PackageInterface;
-use Composer\Package\RootPackageInterface;
 use Composer\Plugin\PluginInterface;
 use Composer\Script\Event;
 use Composer\Script\ScriptEvents;
 use Composer\Util\Filesystem;
 use Composer\Util\ProcessExecutor;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Exception\LogicException;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Exception\RuntimeException;
-use Symfony\Component\Process\PhpExecutableFinder;
 
 /**
  * Plugin.
  */
-class Plugin implements PluginInterface, EventSubscriberInterface
+final class Plugin implements PluginInterface, EventSubscriberInterface
 {
 
     /**
@@ -160,21 +155,28 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         $io = $this->io;
         $isVerbose = $io->isVerbose();
         $exitCode = 0;
-        $pluginPackage = $this->composer->getRepositoryManager()->getLocalRepository()->findPackage('verbruggenalex/coding-standards', '*');
+        $pluginPackage = $this
+            ->composer
+            ->getRepositoryManager()
+            ->getLocalRepository()
+            ->findPackage('verbruggenalex/coding-standards', '*');
         $pluginPackageRoot = $this->composer->getInstallationManager()->getInstallPath($pluginPackage);
 
         if ($isVerbose) {
-            $io->write(sprintf('<info>%s</info>', self::MESSAGE_RUNNING_INSTALLER));
+            $io->write(sprintf('<info>%s</info>', "Installing coding standards..."));
         }
 
         if ($drupal = $this->composer->getRepositoryManager()->getLocalRepository()->findPackages('drupal/core')) {
             $io->write(sprintf('<info>%s</info>', 'This is a Drupal project.'));
         }
-        if ($symfony = $this->composer->getRepositoryManager()->getLocalRepository()->findPackages('symfony/framework-bundle')) {
+        if ($symfony = $this
+            ->composer
+            ->getRepositoryManager()
+            ->getLocalRepository()
+            ->findPackages('symfony/framework-bundle')) {
             $io->write(sprintf('<info>%s</info>', 'This is a Symfony project.'));
         }
 
         return $exitCode;
     }
-
 }

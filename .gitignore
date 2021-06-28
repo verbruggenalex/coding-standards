@@ -3,3 +3,4 @@
 /builds/
 /grumphp.yml
 /phpcs.xml
+/phpstan.neon

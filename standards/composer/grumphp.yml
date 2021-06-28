@@ -23,6 +23,8 @@ grumphp:
         - "echo "
       triggered_by: [php]
     jsonlint: ~
+    phpcs: ~
+    phpstan: ~
     phplint: ~
     securitychecker_enlightn:
       lockfile: composer.lock
