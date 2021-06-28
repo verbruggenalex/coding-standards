@@ -41,9 +41,9 @@
             "sudo mkdir -p ../builds/drupal",
             "sudo chown $(id -u):$(id -g) ../builds/drupal",
             "cp templates/drupal/composer.json ../builds/drupal",
-            "composer install -d ../builds/drupal",
+            "composer install -d ../builds/drupal --ansi",
             "cd ../builds/drupal/web && mkdir -p modules/custom themes/custom profiles/custom",
-            "composer require -d ../builds/drupal --no-interaction drupal/coder enlightn/security-checker ergebnis/composer-normalize mglaman/phpstan-drupal php-parallel-lint/php-parallel-lint phpmd/phpmd phpro/grumphp phpstan/phpstan-deprecation-rules"
+            "composer require -d ../builds/drupal --no-interaction --ansi drupal/coder enlightn/security-checker ergebnis/composer-normalize mglaman/phpstan-drupal php-parallel-lint/php-parallel-lint phpmd/phpmd phpro/grumphp phpstan/phpstan-deprecation-rules"
         ]
     }
 }

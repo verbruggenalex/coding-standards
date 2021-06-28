@@ -129,13 +129,26 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
 
         $finder = new Finder();
         $finder->files()->in(__DIR__ . '/../templates/' . $projectType);
+        $scaffolding = [];
 
         foreach ($finder as $file) {
+            $absoluteFilePath = $file->getRealPath();
             $relativeFilePath = $file->getRelativePathname();
             if (!file_exists($relativeFilePath)) {
+                $scaffolding[$absoluteFilePath] = $relativeFilePath;
+            }
+        }
+
+        if ($scaffolding) {
+            $io->write('Scaffolding files for <comment>verbruggenalex/coding-standards</comment>');
+            foreach ($scaffolding as $absoluteFilePath => $relativeFilePath) {
                 // Copy the tool configuration files that point to our coding-standards standard.
-                $this->filesystem->copy($file->getRealPath(), $this->cwd . '/' . $relativeFilePath);
-                $io->write(sprintf('<info>%s</info> <comment>%s</comment>', 'Copied', $relativeFilePath));
+                $this->filesystem->copy($absoluteFilePath, $this->cwd . '/' . $relativeFilePath);
+                $io->write(sprintf(
+                    '  - Copy <info>%s</info> from <info>%s</info>',
+                    $relativeFilePath,
+                    dirname($absoluteFilePath)
+                ));
             }
         }
         return $exitCode;
