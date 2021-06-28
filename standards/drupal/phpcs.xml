@@ -9,6 +9,7 @@
     <rule ref="DrupalPractice" />
 
     <arg name="extensions" value="php,inc,module,install,test,profile,theme,css,js,info.yml,services.yml,routing.yml" />
+    <arg name="ignore" value="vendor/,node_modules/" />
     <arg value="sp"/>
 
 </ruleset>

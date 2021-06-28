@@ -1,26 +1,11 @@
 parameters:
   level: 0
   drupal:
-    drupal_root: %currentWorkingDirectory%/web
+    drupal_root: %currentWorkingDirectory%/htdocs
   paths:
-    - %currentWorkingDirectory%/web
-  ignoreErrors:
-    - '#Access to an undefined property Drupal\\Core\\Field\\FieldItemListInterface::\$[a-zA-Z0-9_]+\.#'
-    - '#Call to an undefined method Drupal\\Core\\Field\\FieldItemListInterface::[a-zA-Z0-9_]+\(\)\.#'
-    - '#Parameter \#2 \$value of method Drupal\\Core\\Database\\Query\\ConditionInterface::condition\(\) expects array\|Drupal\\Core\\Database\\Query\\SelectInterface\|string\|null, [a-zA-Z0-9_]+ given.#'
-    - '#Unsafe usage of new static\(\).#'
-    - '/^Method [a-zA-Z0-9\\_]+::create\(\) has no return typehint specified./'
-    -
-      message: '/^Function [a-zA-Z0-9\\_]+\(\) has no return typehint specified\./'
-      paths:
-        - *.module
-        - *.install
-        - *.theme
-        - *.profile
-        - *.inc
-        - *.php
-  reportUnmatchedIgnoredErrors: false
-  checkMissingIterableValueType: false
+    - %currentWorkingDirectory%/htdocs/modules/custom
+    - %currentWorkingDirectory%/htdocs/themes/custom
+    - %currentWorkingDirectory%/htdocs/profiles/custom
 includes:
   - %currentWorkingDirectory%/vendor/mglaman/phpstan-drupal/extension.neon
   - %currentWorkingDirectory%/vendor/phpstan/phpstan-deprecation-rules/rules.neon

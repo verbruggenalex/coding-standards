@@ -31,11 +31,11 @@
         "drupal/core"
       ],
       "locations": {
-        "web-root": "./web"
+        "web-root": "./htdocs"
       }
     },
     "installer-paths": {
-      "web/core": [
+      "htdocs/core": [
         "type:drupal-core"
       ]
     }
@@ -53,8 +53,8 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "scripts": {
-    "phpcs": "./vendor/bin/phpcs ./vendor/drupal/coder/tests/",
-    "phpmd": "./vendor/bin/phpmd web/ text phpmd.xml",
+    "phpcs": "./vendor/bin/phpcs",
+    "phpmd": "./vendor/bin/phpmd htdocs/ text phpmd.xml",
     "phpstan": "./vendor/bin/phpstan analyse --memory-limit=1G"
   }
 }

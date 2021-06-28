@@ -2,5 +2,7 @@
 <ruleset name="Internal Drupal Ruleset">
     <description>Internal Drupal Ruleset</description>
     <rule ref="vendor/verbruggenalex/coding-standards/standards/drupal/phpcs.xml" />
-    <file>./</file>
+    <file>./htdocs/modules/custom</file>
+    <file>./htdocs/themes/custom</file>
+    <file>./htdocs/profiles/custom</file>
 </ruleset>
