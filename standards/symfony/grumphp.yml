@@ -1,0 +1,2 @@
+imports:
+  - { resource: ../composer/grumphp.yml }

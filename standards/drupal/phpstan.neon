@@ -1,11 +1,10 @@
 parameters:
-  level: 0
+  level: 8
   drupal:
-    drupal_root: %currentWorkingDirectory%/htdocs
+    drupal_root: %currentWorkingDirectory%/web
   paths:
-    - %currentWorkingDirectory%/htdocs/modules/custom
-    - %currentWorkingDirectory%/htdocs/themes/custom
-    - %currentWorkingDirectory%/htdocs/profiles/custom
+    - %currentWorkingDirectory%/web/modules/custom
+    - %currentWorkingDirectory%/web/themes/custom
 includes:
   - %currentWorkingDirectory%/vendor/mglaman/phpstan-drupal/extension.neon
   - %currentWorkingDirectory%/vendor/phpstan/phpstan-deprecation-rules/rules.neon

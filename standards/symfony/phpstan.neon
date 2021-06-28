@@ -1,0 +1,6 @@
+parameters:
+  level: 8
+  paths:
+    - %currentWorkingDirectory%/src
+includes:
+  - %currentWorkingDirectory%/vendor/phpstan/phpstan-deprecation-rules/rules.neon

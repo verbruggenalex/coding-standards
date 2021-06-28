@@ -31,11 +31,11 @@
         "drupal/core"
       ],
       "locations": {
-        "web-root": "./htdocs"
+        "web-root": "./web"
       }
     },
     "installer-paths": {
-      "htdocs/core": [
+      "web/core": [
         "type:drupal-core"
       ]
     }

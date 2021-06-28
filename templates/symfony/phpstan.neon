@@ -1,0 +1,3 @@
+parameters:
+includes:
+  - vendor/verbruggenalex/coding-standards/standards/symfony/phpstan.neon
