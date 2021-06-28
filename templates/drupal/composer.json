@@ -19,6 +19,7 @@
     "drupal/core-composer-scaffold": "^9.1",
     "drupal/core-dev": "^9.1",
     "drupal/core-recommended": "^9.1",
+    "phpspec/prophecy-phpunit": "^2",
     "verbruggenalex/coding-standards": "dev-master"
   },
   "config": {
@@ -52,8 +53,8 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "scripts": {
-    "phpcs": "./vendor/bin/phpcs",
+    "phpcs": "./vendor/bin/phpcs ./vendor/drupal/coder/tests/",
     "phpmd": "./vendor/bin/phpmd web/ text phpmd.xml",
-    "phpstan": "./vendor/bin/phpstan"
+    "phpstan": "./vendor/bin/phpstan analyse --memory-limit=1G"
   }
 }

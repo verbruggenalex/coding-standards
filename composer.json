@@ -1,5 +1,6 @@
 {
     "name": "verbruggenalex/coding-standards",
+    "type": "composer-plugin",
     "description": "Coding standards package",
     "authors": [
         {
@@ -7,17 +8,33 @@
             "email": "alexander.verbruggen@intracto.com"
         }
     ],
+    "require": {
+        "composer-plugin-api": "^2.0"
+    },
     "require-dev": {
+        "composer/composer": "^2.1",
         "enlightn/security-checker": "^1.9",
         "ergebnis/composer-normalize": "^2.15",
+        "php-parallel-lint/php-parallel-lint": "^1.3",
         "phpro/grumphp": "^1.3",
         "squizlabs/php_codesniffer": "^3.6"
+    },
+    "extra": {
+        "class": "VerbruggenAlex\\CodingStandards\\Plugin"
+    },
+    "autoload": {
+        "psr-4": {
+            "VerbruggenAlex\\CodingStandards\\": "src/"
+        }
     },
     "scripts": {
         "post-install-cmd": [
             "mkdir -p vendor/verbruggenalex/coding-standards",
             "cp -Rf standards/ vendor/verbruggenalex/coding-standards",
             "cp -Rf templates/composer/* ./"
+        ],
+        "install-codestandards": [
+            "VerbruggenAlex\\CodingStandards\\Plugin::run"
         ],
         "setup-drupal": [
             "sudo mkdir -p ../builds/drupal",

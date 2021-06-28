@@ -3,7 +3,7 @@ parameters:
   drupal:
     drupal_root: %currentWorkingDirectory%/web
   paths:
-    - %currentWorkingDirectory%/web/core/includes
+    - %currentWorkingDirectory%/web
   ignoreErrors:
     - '#Access to an undefined property Drupal\\Core\\Field\\FieldItemListInterface::\$[a-zA-Z0-9_]+\.#'
     - '#Call to an undefined method Drupal\\Core\\Field\\FieldItemListInterface::[a-zA-Z0-9_]+\(\)\.#'
@@ -22,5 +22,5 @@ parameters:
   reportUnmatchedIgnoredErrors: false
   checkMissingIterableValueType: false
 includes:
-  - vendor/mglaman/phpstan-drupal/extension.neon
-  - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+  - %currentWorkingDirectory%/vendor/mglaman/phpstan-drupal/extension.neon
+  - %currentWorkingDirectory%/vendor/phpstan/phpstan-deprecation-rules/rules.neon

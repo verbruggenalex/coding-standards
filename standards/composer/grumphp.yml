@@ -12,19 +12,16 @@ grumphp:
         - package-lock.json
     git_blacklist:
       keywords:
-        # PHP
-        - " die("
-        - " var_dump("
-        - " print_r("
-        - " print("
-        - " dump("
-        - " debug_backtrace("
-        - " file_put_contents("
-        - " exit;"
-        - " echo "
-        # JS
-        - " console.log("
-      triggered_by: [php,js]
+        - "die("
+        - "var_dump("
+        - "print_r("
+        - "print("
+        - "dump("
+        - "debug_backtrace("
+        - "file_put_contents("
+        - "exit;"
+        - "echo "
+      triggered_by: [php]
     jsonlint: ~
     phplint: ~
     securitychecker_enlightn:
