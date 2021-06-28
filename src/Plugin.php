@@ -14,9 +14,7 @@ use Composer\Script\Event;
 use Composer\Script\ScriptEvents;
 use Composer\Util\Filesystem;
 use Composer\Util\ProcessExecutor;
-use Symfony\Component\Process\Exception\LogicException;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Exception\RuntimeException;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Plugin.
@@ -40,19 +38,9 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
     private $filesystem;
 
     /**
-     * @var array
-     */
-    private $installedPaths;
-
-    /**
      * @var IOInterface
      */
     private $io;
-
-    /**
-     * @var ProcessExecutor
-     */
-    private $processExecutor;
 
     /**
      * Triggers the plugin's main functionality.
@@ -60,12 +48,6 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
      * Makes it possible to run the plugin as a custom command.
      *
      * @param Event $event
-     *
-     * @throws \InvalidArgumentException
-     * @throws \RuntimeException
-     * @throws LogicException
-     * @throws ProcessFailedException
-     * @throws RuntimeException
      */
     public static function run(Event $event)
     {
@@ -82,11 +64,6 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
 
     /**
      * {@inheritDoc}
-     *
-     * @throws \RuntimeException
-     * @throws LogicException
-     * @throws ProcessFailedException
-     * @throws RuntimeException
      */
     public function activate(Composer $composer, IOInterface $io)
     {
@@ -112,19 +89,11 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
 
     /**
      * Prepares the plugin so it's main functionality can be run.
-     *
-     * @throws \RuntimeException
-     * @throws LogicException
-     * @throws ProcessFailedException
-     * @throws RuntimeException
      */
     private function init()
     {
         $this->cwd = getcwd();
-        $this->installedPaths = array();
-
-        $this->processExecutor = new ProcessExecutor($this->io);
-        $this->filesystem = new Filesystem($this->processExecutor);
+        $this->filesystem = new Filesystem(new ProcessExecutor($this->io));
     }
 
     /**
@@ -144,39 +113,31 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
 
     /**
      * Entry point for post install and post update events.
-     *
-     * @throws \InvalidArgumentException
-     * @throws LogicException
-     * @throws ProcessFailedException
-     * @throws RuntimeException
      */
     public function onDependenciesChangedEvent()
     {
         $io = $this->io;
-        $isVerbose = $io->isVerbose();
         $exitCode = 0;
-        $pluginPackage = $this
-            ->composer
-            ->getRepositoryManager()
-            ->getLocalRepository()
-            ->findPackage('verbruggenalex/coding-standards', '*');
-        $pluginPackageRoot = $this->composer->getInstallationManager()->getInstallPath($pluginPackage);
-
-        if ($isVerbose) {
-            $io->write(sprintf('<info>%s</info>', "Installing coding standards..."));
+        $localRepo = $this->composer->getRepositoryManager()->getLocalRepository();
+        $projectType = 'composer';
+        if ($localRepo->findPackages('symfony/framework-bundle')) {
+            $projectType = 'symfony';
+        }
+        if ($localRepo->findPackages('drupal/core')) {
+            $projectType = 'drupal';
         }
 
-        if ($drupal = $this->composer->getRepositoryManager()->getLocalRepository()->findPackages('drupal/core')) {
-            $io->write(sprintf('<info>%s</info>', 'This is a Drupal project.'));
-        }
-        if ($symfony = $this
-            ->composer
-            ->getRepositoryManager()
-            ->getLocalRepository()
-            ->findPackages('symfony/framework-bundle')) {
-            $io->write(sprintf('<info>%s</info>', 'This is a Symfony project.'));
-        }
+        $finder = new Finder();
+        $finder->files()->in(__DIR__ . '/../templates/' . $projectType);
 
+        foreach ($finder as $file) {
+            $relativeFilePath = $file->getRelativePathname();
+            if (!file_exists($relativeFilePath)) {
+                // Copy the tool configuration files that point to our coding-standards standard.
+                $this->filesystem->copy($file->getRealPath(), $this->cwd . '/' . $relativeFilePath);
+                $io->write(sprintf('<info>%s</info> <comment>%s</comment>', 'Copied', $relativeFilePath));
+            }
+        }
         return $exitCode;
     }
 }
