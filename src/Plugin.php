@@ -12,9 +12,8 @@ use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
 use Composer\Script\Event;
 use Composer\Script\ScriptEvents;
-use Composer\Util\Filesystem;
-use Composer\Util\ProcessExecutor;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Filesystem\Filesystem;
 
 /**
  * Plugin.
@@ -93,7 +92,7 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
     private function init()
     {
         $this->cwd = getcwd();
-        $this->filesystem = new Filesystem(new ProcessExecutor($this->io));
+        $this->filesystem = new Filesystem();
     }
 
     /**
@@ -119,14 +118,39 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
         $io = $this->io;
         $exitCode = 0;
         $localRepo = $this->composer->getRepositoryManager()->getLocalRepository();
+
+        // Default project type is Composer.
         $projectType = 'composer';
+        $dependencies = [
+            'enlightn/security-checker',
+            'ergebnis/composer-normalize',
+            'php-parallel-lint/php-parallel-lint',
+            'phpro/grumphp',
+            'phpstan/phpstan-deprecation-rules',
+        ];
+
+        // Extra dependencies for Symfony projects.
         if ($localRepo->findPackages('symfony/framework-bundle')) {
             $projectType = 'symfony';
-        }
-        if ($localRepo->findPackages('drupal/core')) {
-            $projectType = 'drupal';
+            $dependencies += [
+                'escapestudios/symfony2-coding-standard',
+            ];
         }
 
+        // Extra dependencies for Drupal projects.
+        if ($localRepo->findPackages('drupal/core')) {
+            $projectType = 'drupal';
+            $dependencies += [
+                'drupal/coder',
+                'mglaman/phpstan-drupal',
+            ];
+            // Make sure we have our custom folders.
+            $this->filesystem->mkdir('web/modules/custom');
+            $this->filesystem->mkdir('web/themes/custom');
+            $this->filesystem->mkdir('web/profiles/custom');
+        }
+
+        // Find all templates to copy over to the project.
         $finder = new Finder();
         $finder->files()->in(__DIR__ . '/../templates/' . $projectType);
         $scaffolding = [];
@@ -139,6 +163,7 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
             }
         }
 
+        // Copy all needed files over and notify the user.
         if ($scaffolding) {
             $io->write('Scaffolding files for <comment>verbruggenalex/coding-standards</comment>');
             foreach ($scaffolding as $absoluteFilePath => $relativeFilePath) {
@@ -150,6 +175,23 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
                     dirname($absoluteFilePath)
                 ));
             }
+        }
+
+        // Check if there are any missing dependencies.
+        $missingDependencies = [];
+        foreach ($dependencies as $dependency) {
+            if (!$localRepo->findPackages($dependency)) {
+                $missingDependencies[] = $dependency;
+            }
+        }
+
+        // Ask the user if they would like to add the missing dependencies.
+        // @todo: Create yes no question that allows to run composer require <packages> --dev
+        if ($missingDependencies) {
+            $io->write(sprintf(
+                'The following dependencies are missing: <info>%s</info>. Would you like to add them now?',
+                implode(', ', $missingDependencies)
+            ));
         }
         return $exitCode;
     }
