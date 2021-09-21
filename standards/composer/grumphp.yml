@@ -10,6 +10,7 @@ grumphp:
       ignore_patterns:
         - composer.lock
         - package-lock.json
+        - yarn.lock
     git_blacklist:
       keywords:
         - "die("
