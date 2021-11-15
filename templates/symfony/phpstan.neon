@@ -1,3 +1,5 @@
-parameters:
+# This import contains Symfony standards provided by verbruggenalex/coding-standards.
 includes:
   - vendor/verbruggenalex/coding-standards/standards/symfony/phpstan.neon
+# You can override configuration provided by that standard or add your own below.
+parameters:

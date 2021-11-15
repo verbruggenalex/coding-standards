@@ -1,2 +1,6 @@
+# This import contains Drupal standards provided by verbruggenalex/coding-standards.
 imports:
   - { resource: vendor/verbruggenalex/coding-standards/standards/drupal/grumphp.yml }
+# You can override configuration provided by that standard or add your own below.
+grumphp:
+  tasks:

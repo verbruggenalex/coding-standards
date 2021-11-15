@@ -6,8 +6,17 @@ grumphp:
     git_blacklist:
       triggered_by: [php,module,inc,install,test,profile,theme]
     phpcs:
+      # This should match the files defined in phpcs.xml!
+      whitelist_patterns:
+        - web/modules/custom
+        - web/themes/custom
+        - web/profiles/custom
+      ignore_patterns:
+        - vendor/
+        - node_modules/
+        - sites/simpletest/
       triggered_by: [php,module,inc,install,test,profile,theme,info.yml,services.yml,routing.yml]
     phplint:
       triggered_by: [php,module,inc,install,test,profile,theme]
     phpstan:
-      triggered_by: [php,module,inc,install,test,profile,theme]
+      use_grumphp_paths: false

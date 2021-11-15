@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <ruleset name="Internal Drupal Ruleset">
     <description>Internal Drupal Ruleset</description>
+    <!-- This import contains Drupal standards provided by verbruggenalex/coding-standards. -->
     <rule ref="vendor/verbruggenalex/coding-standards/standards/drupal/phpcs.xml" />
-    <file>./web/modules/custom</file>
-    <file>./web/themes/custom</file>
-    <file>./web/profiles/custom</file>
+    <!-- You can override configuration provided by that standard or add your own below. -->
 </ruleset>

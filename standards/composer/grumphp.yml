@@ -23,6 +23,8 @@ grumphp:
         - "exit;"
         - "echo "
       triggered_by: [php]
+    git_commit_message:
+      matchers: ['/.*/']
     jsonlint: ~
     phpcs: ~
     phpstan: ~

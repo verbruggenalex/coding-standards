@@ -5,6 +5,9 @@ parameters:
   paths:
     - %currentWorkingDirectory%/web/modules/custom
     - %currentWorkingDirectory%/web/themes/custom
+    - %currentWorkingDirectory%/web/profiles/custom
+  excludePaths:
+    - %currentWorkingDirectory%/web/themes/custom/*/node_modules/*
 includes:
   - %currentWorkingDirectory%/vendor/mglaman/phpstan-drupal/extension.neon
   - %currentWorkingDirectory%/vendor/phpstan/phpstan-deprecation-rules/rules.neon

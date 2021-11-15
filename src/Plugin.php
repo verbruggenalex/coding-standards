@@ -189,8 +189,8 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
         // @todo: Create yes no question that allows to run composer require <packages> --dev
         if ($missingDependencies) {
             $io->write(sprintf(
-                'The following dependencies are missing: <info>%s</info>. Would you like to add them now?',
-                implode(', ', $missingDependencies)
+                'There are dependencies missing! To add them please run <info>composer require %s --dev</info>',
+                implode(' ', $missingDependencies)
             ));
         }
         return $exitCode;

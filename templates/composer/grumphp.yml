@@ -1,2 +1,5 @@
+# This import contains Composer standards provided by verbruggenalex/coding-standards.
 imports:
-    - { resource: standards/composer/grumphp.yml }
+  - { resource: standards/composer/grumphp.yml }
+# You can override configuration provided by that standard or add your own below.
+grumphp:
