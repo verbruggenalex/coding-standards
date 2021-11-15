@@ -30,6 +30,12 @@
     },
     "scripts": {
         "post-install-cmd": [
+            "@copy-standard"
+        ],
+        "post-update-cmd": [
+            "@copy-standard"
+        ],
+        "copy-standard": [
             "mkdir -p vendor/verbruggenalex/coding-standards",
             "cp -Rf standards/ vendor/verbruggenalex/coding-standards",
             "cp -Rf templates/composer/* ./"
