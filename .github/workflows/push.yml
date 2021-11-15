@@ -17,9 +17,7 @@ jobs:
         with:
           path: |
             vendor/
-            web/
-            node_modules/
-          key: build-${{ hashFiles('composer.lock', 'package-lock.json') }}
+          key: build-${{ hashFiles('composer.lock') }}
 
       - name: Setup environment
         run: |
