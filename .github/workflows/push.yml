@@ -11,14 +11,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Cache build
-        id: cache-build
-        uses: actions/cache@v2
-        with:
-          path: |
-            vendor/
-          key: build-${{ hashFiles('composer.lock') }}
-
       - name: Setup environment
         run: |
           docker-compose up -d web

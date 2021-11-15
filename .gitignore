@@ -4,3 +4,4 @@
 /grumphp.yml
 /phpcs.xml
 /phpstan.neon
+/composer.lock
