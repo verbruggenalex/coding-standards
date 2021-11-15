@@ -46,7 +46,6 @@
   "prefer-stable": true,
   "scripts": {
     "phpcs": "./vendor/bin/phpcs",
-    "phpmd": "./vendor/bin/phpmd htdocs/ text phpmd.xml",
     "phpstan": "./vendor/bin/phpstan analyse --memory-limit=1G"
   }
 }

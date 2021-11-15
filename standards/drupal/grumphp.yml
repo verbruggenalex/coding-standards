@@ -19,4 +19,5 @@ grumphp:
     phplint:
       triggered_by: [php,module,inc,install,test,profile,theme]
     phpstan:
+      # Phpstan should run on entire codebase with cache.
       use_grumphp_paths: false
