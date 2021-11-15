@@ -27,7 +27,9 @@ grumphp:
       matchers: ['/.*/']
     jsonlint: ~
     phpcs: ~
-    phpstan: ~
+    phpstan:
+      # Phpstan should run on entire codebase with cache.
+      use_grumphp_paths: false
     phplint: ~
     securitychecker_enlightn:
       lockfile: composer.lock
