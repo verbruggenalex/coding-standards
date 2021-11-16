@@ -4,7 +4,6 @@ grumphp:
     succeeded: ~
   tasks:
     composer: ~
-    composer_normalize: ~
     file_size:
       max_size: 100K
       ignore_patterns:

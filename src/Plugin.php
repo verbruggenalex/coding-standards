@@ -123,7 +123,6 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
         $projectType = 'composer';
         $dependencies = [
             'enlightn/security-checker',
-            'ergebnis/composer-normalize',
             'php-parallel-lint/php-parallel-lint',
             'phpro/grumphp',
             'phpstan/phpstan-deprecation-rules',

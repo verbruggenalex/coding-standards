@@ -2,4 +2,9 @@
 imports:
   - { resource: vendor/verbruggenalex/coding-standards/standards/symfony/grumphp.yml }
 # You can override configuration provided by that standard or add your own below.
-parameters:
+grumphp:
+  tasks:
+    git_commit_message:
+      matchers:
+        "Must contain JIRA ticket.": "/(Merge(.*)|(JIRA-([0-9]+): (.+)))/"
+      case_insensitive: false
