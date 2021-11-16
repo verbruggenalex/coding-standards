@@ -12,16 +12,19 @@ grumphp:
         - yarn.lock
     git_blacklist:
       keywords:
-        - "die("
-        - "var_dump("
-        - "print_r("
-        - "print("
-        - "dump("
-        - "debug_backtrace("
-        - "file_put_contents("
-        - "exit;"
-        - "echo "
-      triggered_by: [php]
+        # PHP
+        - " die("
+        - " var_dump("
+        - " print_r("
+        - " print("
+        - " dump("
+        - " debug_backtrace("
+        - " file_put_contents("
+        - " exit\\;"
+        - " echo\\ "
+        # JS
+        - " console.log("
+      triggered_by: [php,js]
     git_commit_message:
       matchers: ['/.*/']
     jsonlint: ~
